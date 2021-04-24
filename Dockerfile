@@ -1,6 +1,6 @@
 FROM  havengrc-docker.jfrog.io/rocker/rstudio:4.0.4
 LABEL maintainer="Kindly Ops, LLC <support@kindlyops.com>"
-LABEL org.opencontainers.image.source="https://github.com/statik/resume"
+LABEL org.opencontainers.image.source="https://github.com/kindlyops/reporter"
 
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
