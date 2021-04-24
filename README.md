@@ -11,7 +11,7 @@ have the same basename as the input, but the output filetype will be based on wh
 version: '2'
 services:
   generate:
-    image: ghcr.io/kindlyops/reporter:v1.0.1
+    image: ghcr.io/kindlyops/reporter:v1.1.0
     working_dir: /docs
     volumes:
       - .:/docs
