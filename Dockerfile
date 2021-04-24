@@ -146,3 +146,5 @@ RUN installGithub.r kindlyops/tufte \
 #RUN tlmgr install roboto fetamont --verify-repo=none || true
 ADD install-source-pro.sh /install-source-pro.sh
 RUN /install-source-pro.sh
+ADD compilereport.sh /compilereport.sh
+ENTRYPOINT ["/compilereport.sh"]
