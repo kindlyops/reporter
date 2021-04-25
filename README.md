@@ -18,3 +18,14 @@ services:
     command:
       - my-markdown-document.Rmd
 ```
+
+## wrapper utility script
+
+If you need to process ad hoc RMarkdown files it can be handy to use a wrapper script instead of needing to remember a long docker command or keep making docker-compose config files.
+
+```bash
+#!/usr/bin/env bash
+# put this in a file named rmarkdown
+exec docker run -t --volume "$(pwd)":/docs -w /docs ghcr.io/kindlyops/reporter:v1.1.0 "$@"
+```
+Now you can run commands like `rmarkdown foo.Rmd` and get the file processed right away.
