@@ -24,6 +24,7 @@ RUN apt-get update && \
     poppler-utils \
     psutils \
     purifyeps \
+    python3-setuptools \
     python3-pygments \
     t1utils \
     tex-gyre \
@@ -115,8 +116,7 @@ RUN apt-get install -f -y --no-install-recommends \
 RUN install2.r --deps=TRUE remotes \
     && install2.r --deps=TRUE tinytex \
     && install2.r --deps=TRUE formatR \
-    && install2.r --deps=TRUE rmarkdown
-RUN installGithub.r kindlyops/tufte \
+    && install2.r --deps=TRUE rmarkdown \
     && installGithub.r --deps=TRUE kindlyops/ggradar \
     && install2.r --deps=TRUE tint \
     && install2.r --deps=TRUE gridExtra \
@@ -124,7 +124,8 @@ RUN installGithub.r kindlyops/tufte \
     && install2.r --deps=TRUE reshape2 \
     && install2.r --deps=TRUE cowplot \
     && install2.r --deps=TRUE likert \
-    && installGithub.r --deps=TRUE haozhu233/kableExtra
+    && installGithub.r --deps=TRUE haozhu233/kableExtra \
+    && installGithub.r --deps=TRUE hrbrmstr/knitrengines
 # versioned rocker images have repo set to MRAN snapshots for reproducibility
 #&& install2.r --deps=TRUE kableExtra
 #RUN apt-get install -y texlive-xetex
@@ -139,12 +140,13 @@ RUN installGithub.r kindlyops/tufte \
 # ENV PATH=/usr/local/context/tex/texmf-linux-64/bin:/usr/local/context/bin:$PATH
 #RUN fc-cache -fv /usr/share/fonts/
 
-# lets do the super insecure thing 
+# lets do the super insecure thing
 # https://tex.stackexchange.com/questions/528634/tlmgr-unexpected-return-value-from-verify-checksum-5
 #RUNtlmgr init-usertree
 #RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2019/tlnet-final
 #RUN tlmgr install roboto fetamont --verify-repo=none || true
-ADD install-source-pro.sh /install-source-pro.sh
+COPY install-source-pro.sh /install-source-pro.sh
 RUN /install-source-pro.sh
-ADD compilereport.sh /compilereport.sh
+COPY compilereport.sh /compilereport.sh
+RUN installGithub.r kindlyops/tufte@custom
 ENTRYPOINT ["/compilereport.sh"]
