@@ -18,6 +18,8 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          platforms: linux/amd64,linux/arm64
           registry: ghcr.io
           repository: kindlyops/reporter
           tag_with_ref: true
+
