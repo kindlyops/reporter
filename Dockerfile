@@ -125,7 +125,8 @@ RUN install2.r --deps=TRUE remotes \
     && install2.r --deps=TRUE cowplot \
     && install2.r --deps=TRUE likert \
     && installGithub.r --deps=TRUE haozhu233/kableExtra \
-    && installGithub.r --deps=TRUE hrbrmstr/knitrengines
+    && installGithub.r --deps=TRUE hrbrmstr/knitrengines \
+    && installGithub.r --deps=TRUE hadley/emo
 # versioned rocker images have repo set to MRAN snapshots for reproducibility
 #&& install2.r --deps=TRUE kableExtra
 #RUN apt-get install -y texlive-xetex
